@@ -1,0 +1,37 @@
+{
+  "Files": [
+    {
+      "Id": "/Users/yashkarnpabla/SMSRateLimiter/SMSRateLimiter/wwwroot/css/site.css",
+      "PackagePath": "staticwebassets/css/site.css"
+    },
+    {
+      "Id": "/Users/yashkarnpabla/SMSRateLimiter/SMSRateLimiter/wwwroot/index.html",
+      "PackagePath": "staticwebassets/index.html"
+    },
+    {
+      "Id": "/Users/yashkarnpabla/SMSRateLimiter/SMSRateLimiter/wwwroot/js/site.js",
+      "PackagePath": "staticwebassets/js/site.js"
+    },
+    {
+      "Id": "obj/Debug/net9.0/staticwebassets/msbuild.SMSRateLimiter.Microsoft.AspNetCore.StaticWebAssetEndpoints.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssetEndpoints.props"
+    },
+    {
+      "Id": "obj/Debug/net9.0/staticwebassets/msbuild.SMSRateLimiter.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj/Debug/net9.0/staticwebassets/msbuild.build.SMSRateLimiter.props",
+      "PackagePath": "build\\SMSRateLimiter.props"
+    },
+    {
+      "Id": "obj/Debug/net9.0/staticwebassets/msbuild.buildMultiTargeting.SMSRateLimiter.props",
+      "PackagePath": "buildMultiTargeting\\SMSRateLimiter.props"
+    },
+    {
+      "Id": "obj/Debug/net9.0/staticwebassets/msbuild.buildTransitive.SMSRateLimiter.props",
+      "PackagePath": "buildTransitive\\SMSRateLimiter.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

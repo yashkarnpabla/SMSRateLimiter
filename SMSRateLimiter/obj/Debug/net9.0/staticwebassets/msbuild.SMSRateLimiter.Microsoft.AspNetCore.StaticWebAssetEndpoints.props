@@ -1,0 +1,40 @@
+﻿<Project>
+  <ItemGroup>
+    <StaticWebAssetEndpoint Include="_content/SMSRateLimiter/css/site.css">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\site.css'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-L0YyffOAnGth1K5semk2XFXYaq2SG3mRLV6sHNKzeK4="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"706"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022L0YyffOAnGth1K5semk2XFXYaq2SG3mRLV6sHNKzeK4=\u0022"},{"Name":"Last-Modified","Value":"Wed, 05 Mar 2025 01:35:37 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/SMSRateLimiter/css/site.r9pljsvgvn.css">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\site.css'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"r9pljsvgvn"},{"Name":"integrity","Value":"sha256-L0YyffOAnGth1K5semk2XFXYaq2SG3mRLV6sHNKzeK4="},{"Name":"label","Value":"_content/SMSRateLimiter/css/site.css"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"706"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022L0YyffOAnGth1K5semk2XFXYaq2SG3mRLV6sHNKzeK4=\u0022"},{"Name":"Last-Modified","Value":"Wed, 05 Mar 2025 01:35:37 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/SMSRateLimiter/index.html">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\index.html'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-riiEFEusqgPAflcdC\u002BElSGDZRIrqQRPl5kM959P\u002BLBU="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"30339"},{"Name":"Content-Type","Value":"text/html"},{"Name":"ETag","Value":"\u0022riiEFEusqgPAflcdC\u002BElSGDZRIrqQRPl5kM959P\u002BLBU=\u0022"},{"Name":"Last-Modified","Value":"Wed, 05 Mar 2025 03:10:19 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/SMSRateLimiter/index.m3twcod7ao.html">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\index.html'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"m3twcod7ao"},{"Name":"integrity","Value":"sha256-riiEFEusqgPAflcdC\u002BElSGDZRIrqQRPl5kM959P\u002BLBU="},{"Name":"label","Value":"_content/SMSRateLimiter/index.html"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"30339"},{"Name":"Content-Type","Value":"text/html"},{"Name":"ETag","Value":"\u0022riiEFEusqgPAflcdC\u002BElSGDZRIrqQRPl5kM959P\u002BLBU=\u0022"},{"Name":"Last-Modified","Value":"Wed, 05 Mar 2025 03:10:19 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/SMSRateLimiter/js/site.fr6s97uvue.js">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\site.js'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"fr6s97uvue"},{"Name":"integrity","Value":"sha256-O9Y4mABTdqFLHP6JSd3cw2Wke36L6Bypryle/byjvVw="},{"Name":"label","Value":"_content/SMSRateLimiter/js/site.js"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"5780"},{"Name":"Content-Type","Value":"text/javascript"},{"Name":"ETag","Value":"\u0022O9Y4mABTdqFLHP6JSd3cw2Wke36L6Bypryle/byjvVw=\u0022"},{"Name":"Last-Modified","Value":"Wed, 05 Mar 2025 03:05:36 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/SMSRateLimiter/js/site.js">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\site.js'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-O9Y4mABTdqFLHP6JSd3cw2Wke36L6Bypryle/byjvVw="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"5780"},{"Name":"Content-Type","Value":"text/javascript"},{"Name":"ETag","Value":"\u0022O9Y4mABTdqFLHP6JSd3cw2Wke36L6Bypryle/byjvVw=\u0022"},{"Name":"Last-Modified","Value":"Wed, 05 Mar 2025 03:05:36 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+  </ItemGroup>
+</Project>
