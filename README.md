@@ -11,6 +11,20 @@ A microservice in .NET Core (C#) that acts as a gatekeeper for SMS messages, ens
 - RESTful API for integration with other services
 - Real-time updates via SignalR
 
+## Screenshots
+
+### Dashboard Overview
+![Dashboard Overview](screenshots/dashboard.png)
+*The main dashboard showing account-wide statistics including messages per second, total messages, and active phone numbers with equal-sized boxes.*
+
+### Phone Numbers with Rate Limit Indicators
+![Phone Numbers Tab](screenshots/phone-numbers.png)
+*The Phone Numbers tab displaying individual phone numbers with visual rate limit indicators showing how close each number is to its rate limit.*
+
+### Rate Limits Information
+![Rate Limits Tab](screenshots/rate-limits.png)
+*The Rate Limits tab providing detailed information about the rate limiting policies and current status.*
+
 ## Rate Limits
 
 The service enforces two specific limits:
