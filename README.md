@@ -99,6 +99,52 @@ The service can be configured by modifying the `appsettings.json` file:
 }
 ```
 
+## Deployment
+
+### Live Demo
+
+The SMS Rate Limiter is deployed and accessible at: [https://sms-rate-limiter.fly.dev/](https://sms-rate-limiter.fly.dev/)
+
+### Deploying to Fly.io
+
+The project includes Docker configuration for easy deployment to Fly.io:
+
+1. Install the Fly.io CLI:
+   ```bash
+   curl -L https://fly.io/install.sh | sh
+   ```
+
+2. Add Fly.io to your PATH:
+   ```bash
+   export FLYCTL_INSTALL="$HOME/.fly"
+   export PATH="$FLYCTL_INSTALL/bin:$PATH"
+   ```
+
+3. Log in to Fly.io:
+   ```bash
+   flyctl auth login
+   ```
+
+4. Create a new app (if not already created):
+   ```bash
+   flyctl apps create sms-rate-limiter
+   ```
+
+5. Deploy the application:
+   ```bash
+   flyctl deploy
+   ```
+
+6. Open the application in your browser:
+   ```bash
+   flyctl open
+   ```
+
+The deployment uses the following configuration files:
+- `Dockerfile` - Defines how to build and run the .NET application
+- `fly.toml` - Fly.io configuration settings
+- `.dockerignore` - Specifies files to exclude from the Docker build
+
 ## License
 
 This project is licensed under the MIT License - see the LICENSE file for details. 
