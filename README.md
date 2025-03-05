@@ -99,50 +99,6 @@ The service can be configured by modifying the `appsettings.json` file:
 }
 ```
 
-## Running the Project from GitHub
-
-### Prerequisites
-
-- .NET 9.0 SDK or later
-- Git
-
-### Steps to Clone and Run
-
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/YOUR_USERNAME/SMSRateLimiter.git
-   cd SMSRateLimiter
-   ```
-
-2. Run the application:
-   ```bash
-   cd SMSRateLimiter
-   dotnet run
-   ```
-
-3. Open a web browser and navigate to `http://localhost:5134` to access the dashboard.
-
-### Running Tests
-
-To run all tests in the solution:
-```bash
-dotnet test
-```
-
-### Setting Up GitHub Actions (Optional)
-
-You can set up GitHub Actions to automatically build and test your project on every push:
-
-1. Create a `.github/workflows` directory in your repository
-2. Add a workflow file (e.g., `ci.yml`) with build and test steps
-3. Push the changes to GitHub
-
-### Tips for Your Repository
-
-- Add screenshots of the dashboard to your README
-- Keep your documentation up to date
-- Consider adding badges for build status and test coverage
-
 ## License
 
 This project is licensed under the MIT License - see the LICENSE file for details. 
