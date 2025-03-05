@@ -61,6 +61,43 @@ connection.on("ReceiveAccountStatistics", (stats) => {
         progressBarElement.style.width = `${Math.min(ratePercentage, 100)}%`;
         progressBarElement.style.backgroundColor = progressColor;
     }
+
+    // Add placeholder elements to the other boxes to make them the same height
+    let totalMessagesPlaceholder = document.getElementById("total-messages-placeholder");
+    if (!totalMessagesPlaceholder) {
+        const totalMessagesCard = document.querySelector("#account-total").closest(".glass-card");
+        totalMessagesPlaceholder = document.createElement("div");
+        totalMessagesPlaceholder.id = "total-messages-placeholder";
+        totalMessagesPlaceholder.style.marginTop = "15px";
+        totalMessagesPlaceholder.innerHTML = `
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 5px;">
+                <small style="color: var(--text-secondary);">Total count</small>
+                <small style="color: var(--text-secondary); font-weight: 500;">All time</small>
+            </div>
+            <div style="height: 8px; width: 100%; background-color: rgba(0,0,0,0.05); border-radius: 4px; overflow: hidden;">
+                <div style="height: 100%; width: 100%; background-color: rgba(88, 86, 214, 0.3); border-radius: 4px;"></div>
+            </div>
+        `;
+        totalMessagesCard.appendChild(totalMessagesPlaceholder);
+    }
+
+    let activeNumbersPlaceholder = document.getElementById("active-numbers-placeholder");
+    if (!activeNumbersPlaceholder) {
+        const activeNumbersCard = document.querySelector("#active-numbers").closest(".glass-card");
+        activeNumbersPlaceholder = document.createElement("div");
+        activeNumbersPlaceholder.id = "active-numbers-placeholder";
+        activeNumbersPlaceholder.style.marginTop = "15px";
+        activeNumbersPlaceholder.innerHTML = `
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 5px;">
+                <small style="color: var(--text-secondary);">Active</small>
+                <small style="color: var(--text-secondary); font-weight: 500;">Last 60 minutes</small>
+            </div>
+            <div style="height: 8px; width: 100%; background-color: rgba(0,0,0,0.05); border-radius: 4px; overflow: hidden;">
+                <div style="height: 100%; width: 100%; background-color: rgba(88, 86, 214, 0.3); border-radius: 4px;"></div>
+            </div>
+        `;
+        activeNumbersCard.appendChild(activeNumbersPlaceholder);
+    }
 });
 
 // Handle phone number statistics updates
