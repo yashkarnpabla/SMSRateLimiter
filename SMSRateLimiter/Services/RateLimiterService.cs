@@ -45,6 +45,22 @@ public class RateLimiterService : IRateLimiterService, IDisposable
         var phoneNumberTracker = _phoneNumberTrackers.GetOrAdd(businessPhoneNumber, 
             _ => new PhoneNumberTracker(businessPhoneNumber));
 
+        // Calculate the current account-wide rate by summing the rates of all active phone numbers
+        double accountWideRate = CalculateAccountWideRate();
+        
+        // Check account-wide rate limit first
+        if (accountWideRate >= _config.MaxMessagesPerAccountPerSecond)
+        {
+            _logger.LogWarning("Account-wide rate limit exceeded: {CurrentRate}/{MaxRate} messages per second",
+                accountWideRate, _config.MaxMessagesPerAccountPerSecond);
+            
+            return new CanSendMessageResponse
+            {
+                CanSend = false,
+                Reason = $"Account-wide rate limit exceeded: {accountWideRate}/{_config.MaxMessagesPerAccountPerSecond} messages per second"
+            };
+        }
+
         // Check phone number rate limit
         if (phoneNumberTracker.CurrentRate >= _config.MaxMessagesPerNumberPerSecond)
         {
@@ -55,19 +71,6 @@ public class RateLimiterService : IRateLimiterService, IDisposable
             {
                 CanSend = false,
                 Reason = $"Rate limit exceeded for phone number: {phoneNumberTracker.CurrentRate}/{_config.MaxMessagesPerNumberPerSecond} messages per second"
-            };
-        }
-
-        // Check account-wide rate limit
-        if (_accountTracker.CurrentRate >= _config.MaxMessagesPerAccountPerSecond)
-        {
-            _logger.LogWarning("Account-wide rate limit exceeded: {CurrentRate}/{MaxRate} messages per second",
-                _accountTracker.CurrentRate, _config.MaxMessagesPerAccountPerSecond);
-            
-            return new CanSendMessageResponse
-            {
-                CanSend = false,
-                Reason = $"Account-wide rate limit exceeded: {_accountTracker.CurrentRate}/{_config.MaxMessagesPerAccountPerSecond} messages per second"
             };
         }
 
@@ -121,12 +124,23 @@ public class RateLimiterService : IRateLimiterService, IDisposable
     /// <inheritdoc />
     public async Task<AccountStatistics> GetAccountStatisticsAsync()
     {
+        double accountWideRate = CalculateAccountWideRate();
+        
         return new AccountStatistics
         {
-            CurrentMessagesPerSecond = _accountTracker.CurrentRate,
+            CurrentMessagesPerSecond = accountWideRate,
             TotalMessagesSent = _accountTracker.TotalMessagesSent,
             ActivePhoneNumbers = _phoneNumberTrackers.Count
         };
+    }
+
+    /// <summary>
+    /// Calculates the current account-wide rate by summing the rates of all active phone numbers
+    /// </summary>
+    /// <returns>The current account-wide rate</returns>
+    private double CalculateAccountWideRate()
+    {
+        return _phoneNumberTrackers.Values.Sum(tracker => tracker.CurrentRate);
     }
 
     private void CleanupInactivePhoneNumbers(object? state)
@@ -213,6 +227,7 @@ public class RateLimiterService : IRateLimiterService, IDisposable
                 }
 
                 // Calculate the current rate
+                // Use the exact count of messages in the window
                 CurrentRate = _messageTimestamps.Count;
             }
         }

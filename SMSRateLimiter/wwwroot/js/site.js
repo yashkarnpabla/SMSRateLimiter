@@ -48,7 +48,7 @@ connection.on("ReceiveAccountStatistics", (stats) => {
         progressBar.style.marginTop = "15px";
         progressBar.innerHTML = `
             <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 5px;">
-                <small style="color: var(--text-secondary);">0</small>
+                <small id="account-rate-min" style="color: var(--text-secondary);">${stats.currentMessagesPerSecond.toFixed(1)}</small>
                 <small style="color: var(--text-secondary); font-weight: 500;">Rate Limit: 20/sec</small>
             </div>
             <div style="height: 8px; width: 100%; background-color: rgba(0,0,0,0.05); border-radius: 4px; overflow: hidden;">
@@ -60,6 +60,12 @@ connection.on("ReceiveAccountStatistics", (stats) => {
         const progressBarElement = document.getElementById("account-rate-bar");
         progressBarElement.style.width = `${Math.min(ratePercentage, 100)}%`;
         progressBarElement.style.backgroundColor = progressColor;
+
+        // Update the minimum value text to match the current rate
+        const minRateElement = document.getElementById("account-rate-min");
+        if (minRateElement) {
+            minRateElement.textContent = stats.currentMessagesPerSecond.toFixed(1);
+        }
     }
 
     // Add placeholder elements to the other boxes to make them the same height
