@@ -1,62 +1,62 @@
-using Microsoft.AspNetCore.SignalR;
-using SMSRateLimiter.Hubs;
+using Microsoft.AspNetCore.SignalR; // Import SignalR namespace for real-time communication
+using SMSRateLimiter.Hubs; // Import Hubs namespace for the StatisticsHub
 
-namespace SMSRateLimiter.Services;
+namespace SMSRateLimiter.Services; // Define the namespace for this service
 
 /// <summary>
 /// Background service that periodically broadcasts statistics to connected clients
 /// </summary>
-public class StatisticsBroadcastService : BackgroundService
+public class StatisticsBroadcastService : BackgroundService // Inherits from BackgroundService to run as a long-running service
 {
-    private readonly IServiceProvider _serviceProvider;
-    private readonly ILogger<StatisticsBroadcastService> _logger;
-    private readonly TimeSpan _broadcastInterval = TimeSpan.FromSeconds(1);
+    private readonly IServiceProvider _serviceProvider; // For creating scoped services during execution
+    private readonly ILogger<StatisticsBroadcastService> _logger; // For logging information and errors
+    private readonly TimeSpan _broadcastInterval = TimeSpan.FromSeconds(1); // Interval between broadcasts (1 second)
 
     /// <summary>
     /// Initializes a new instance of the <see cref="StatisticsBroadcastService"/> class
     /// </summary>
     /// <param name="serviceProvider">Service provider</param>
     /// <param name="logger">Logger</param>
-    public StatisticsBroadcastService(IServiceProvider serviceProvider, ILogger<StatisticsBroadcastService> logger)
+    public StatisticsBroadcastService(IServiceProvider serviceProvider, ILogger<StatisticsBroadcastService> logger) // Constructor with dependency injection
     {
-        _serviceProvider = serviceProvider;
-        _logger = logger;
+        _serviceProvider = serviceProvider; // Initialize the service provider
+        _logger = logger; // Initialize the logger
     }
 
     /// <inheritdoc />
-    protected override async Task ExecuteAsync(CancellationToken stoppingToken)
+    protected override async Task ExecuteAsync(CancellationToken stoppingToken) // Main execution method that runs when the service starts
     {
-        _logger.LogInformation("Statistics broadcast service is starting");
+        _logger.LogInformation("Statistics broadcast service is starting"); // Log service startup
 
-        while (!stoppingToken.IsCancellationRequested)
+        while (!stoppingToken.IsCancellationRequested) // Continue running until cancellation is requested
         {
             try
             {
-                await BroadcastStatisticsAsync();
+                await BroadcastStatisticsAsync(); // Call method to broadcast statistics
             }
-            catch (Exception ex)
+            catch (Exception ex) // Catch any exceptions to prevent the service from crashing
             {
-                _logger.LogError(ex, "Error broadcasting statistics");
+                _logger.LogError(ex, "Error broadcasting statistics"); // Log the error
             }
 
-            await Task.Delay(_broadcastInterval, stoppingToken);
+            await Task.Delay(_broadcastInterval, stoppingToken); // Wait for the broadcast interval before the next broadcast
         }
 
-        _logger.LogInformation("Statistics broadcast service is stopping");
+        _logger.LogInformation("Statistics broadcast service is stopping"); // Log service shutdown
     }
 
-    private async Task BroadcastStatisticsAsync()
+    private async Task BroadcastStatisticsAsync() // Method to fetch and broadcast statistics
     {
-        using var scope = _serviceProvider.CreateScope();
-        var rateLimiterService = scope.ServiceProvider.GetRequiredService<IRateLimiterService>();
-        var hubContext = scope.ServiceProvider.GetRequiredService<IHubContext<StatisticsHub>>();
+        using var scope = _serviceProvider.CreateScope(); // Create a service scope for dependency resolution
+        var rateLimiterService = scope.ServiceProvider.GetRequiredService<IRateLimiterService>(); // Get the rate limiter service
+        var hubContext = scope.ServiceProvider.GetRequiredService<IHubContext<StatisticsHub>>(); // Get the SignalR hub context
 
         // Get account statistics
-        var accountStats = await rateLimiterService.GetAccountStatisticsAsync();
-        await hubContext.Clients.All.SendAsync("ReceiveAccountStatistics", accountStats);
+        var accountStats = await rateLimiterService.GetAccountStatisticsAsync(); // Fetch account-wide statistics
+        await hubContext.Clients.All.SendAsync("ReceiveAccountStatistics", accountStats); // Broadcast account statistics to all clients
 
         // Get phone number statistics
-        var phoneNumberStats = await rateLimiterService.GetAllPhoneNumberStatisticsAsync();
-        await hubContext.Clients.All.SendAsync("ReceivePhoneNumberStatistics", phoneNumberStats);
+        var phoneNumberStats = await rateLimiterService.GetAllPhoneNumberStatisticsAsync(); // Fetch statistics for all phone numbers
+        await hubContext.Clients.All.SendAsync("ReceivePhoneNumberStatistics", phoneNumberStats); // Broadcast phone number statistics to all clients
     }
-} 
+}
